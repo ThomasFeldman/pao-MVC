@@ -1,61 +1,34 @@
 package org.launchcode.pao.Controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("cheese")
 public class PaoController {
+    static ArrayList<String> cheeses = new ArrayList<>();
 
     @RequestMapping(value = "")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("title", "My Cheeses");
         return "index";
     }
 
-//    @RequestMapping(value="")
-//    @ResponseBody
-//    public String index(HttpServletRequest request) {
-//        String name = request.getParameter("name");
-//
-//        if (name == null) {
-//            name = "World";
-//        }
-//
-//        return "";
-//    }
-//
-//    @RequestMapping(value = "hello/{name}")
-//    @ResponseBody
-//    public String helloUrlSegment(@PathVariable String name) {
-//        return "Hello" + name;
-//    }
-//
-//    @RequestMapping(value="hello", method= RequestMethod.GET)
-//    @ResponseBody
-//    public String helloForm() {
-//        String html = "<form method='post'>"+
-//                "<input type='text' name='name'/>"+
-//                "<input type='submit' value='Greet Me!'/>"+
-//                "</form>";
-//
-//        return html;
-//    }
-//
-//    @RequestMapping(value="hello", method = RequestMethod.POST)
-//    @ResponseBody
-//    public String helloPost(HttpServletRequest request){
-//        String name = request.getParameter("name");
-//
-//        return "Hello " + name;
-//    }
-//
-//    @RequestMapping(value="goodbye")
-//    public String goodbye() {
-//        return "redirect:/";
-//    }
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public String displayAddCheeseForm(Model  model) {
+        model.addAttribute("title", "Add Cheese");
+        return "add";
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public String processAddCheese(@RequestParam String cheeseName) {
+        cheeses.add(cheeseName);
+        return "redirect:";
+    }
 
 }

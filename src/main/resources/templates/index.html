@@ -2,9 +2,18 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8" />
-    <title>Title</title>
+    <title th:text="${title}">Title</title>
 </head>
 <body>
-    <h1>My Cheese</h1>
+    <h1 th:text="${title}"></h1>
+    <p th:unless="${cheeses} and ${cheeses.size()}">no cheese ;(</p>
+
+    <a href="/cheese/add">add cheese</a>
+    <ul>
+<!--        th:each is like a for loop, cheese is the iterator, cheeses
+             are the model object being iterated over
+             th:text pulls the text of each iterated item "cheese"-->
+        <li th:each="cheese : ${cheeses}" th:text="${cheese}"></li>
+    </ul>
 </body>
 </html>
