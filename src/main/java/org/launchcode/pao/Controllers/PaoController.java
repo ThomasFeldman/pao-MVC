@@ -23,8 +23,10 @@ public class PaoController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheese(@RequestParam String cheeseName) {
-        cheeses.add(cheeseName);
+    public String processAddCheese(@RequestParam String cheeseName, @RequestParam Integer cheeseNum) {
+        for (int i = 0; i < cheeseNum; i++) {
+            cheeses.add(cheeseName);
+        };
         return "redirect:";
     }
 
