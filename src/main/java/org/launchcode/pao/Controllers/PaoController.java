@@ -1,10 +1,7 @@
 package org.launchcode.pao.Controllers;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @Controller
