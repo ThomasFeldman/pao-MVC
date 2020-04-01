@@ -1,24 +1,25 @@
 package org.launchcode.pao.Controllers;
 
+import org.launchcode.pao.Models.Cheese;
+import org.launchcode.pao.Models.CheeseData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 @Controller
 @RequestMapping("cheese")
 public class PaoController {
 
-    static HashMap<String, String> cheeses = new HashMap<>();
+    //Stores Cheese objects imported from Cheese class
 
     //Request path: /cheese
     @RequestMapping(value = "")
     public String index(Model model) {
 
-        model.addAttribute("cheeses", cheeses);
+        model.addAttribute("cheeses", CheeseData.getAll());
         model.addAttribute("title", "My Cheeses");
 
         return "index";
@@ -31,24 +32,23 @@ public class PaoController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddCheese(@RequestParam String cheeseName,
-       @RequestParam String cheeseDescription) {
-        cheeses.put(cheeseName, cheeseDescription);
+    public String processAddCheeseForm(@ModelAttribute Cheese newCheese) {
+        CheeseData.add(newCheese);
         return "redirect:";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveCheeseForm(Model model) {
-        model.addAttribute("cheeses", cheeses.keySet());
+        model.addAttribute("cheeses", CheeseData.getAll());
         model.addAttribute("title", "Remove Cheese");
         return "remove";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam ArrayList<String> cheese) {
+    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
 
-        for (String aCheese : cheese) {
-            cheeses.remove(aCheese);
+        for (int cheeseId : cheeseIds) {
+            CheeseData.remove(cheeseId);
         }
 
         return "redirect:";
