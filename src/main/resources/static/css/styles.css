@@ -1,4 +1,7 @@
 body {
     font-family: sans-serif;
-    color: pink;
+}
+
+nav {
+    margin-bottom: 20px;
 }

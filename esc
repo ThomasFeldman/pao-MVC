@@ -1,0 +1,53 @@
+[33mcommit 2868b1bf027d997bf61d7d7710e3803deef1a1f5[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Tue Mar 31 22:53:58 2020 -0500
+
+    moving on to database storage
+
+[33mcommit ed23196367ae678c5f8471bfc688d10462e94607[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Tue Mar 31 15:16:46 2020 -0500
+
+    added rest of functionality from cheese-mvc, still using that to learn from
+
+[33mcommit 6ac54c09cde56eddff3d3d08f995d07abb1d428c[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Tue Mar 31 14:45:25 2020 -0500
+
+    Working copy before lots of changes
+
+[33mcommit 7db899a0e66062a39561e82d7217b9e715b772b4[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Mon Mar 30 06:38:12 2020 -0500
+
+    messing with th logic
+
+[33mcommit 229b3395ca41cac1c1dc700985504c173dbda8d3[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Mon Mar 30 06:25:35 2020 -0500
+
+    testing ability to make multiples
+
+[33mcommit d6f82ee5461911e7b5f8ee4e59a580b2f1d121f2[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Mon Mar 30 06:08:04 2020 -0500
+
+    thymeleaf fragments
+
+[33mcommit e2fd5b2e44c6e94da507dd4d74d22a9b8ca8a546[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Sun Mar 29 23:34:59 2020 -0500
+
+    relearning spring boot from launchcode videos
+
+[33mcommit 8bb10d13938c41bef498e1f08cb4112efb01eef5[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Sun Mar 29 22:09:56 2020 -0500
+
+    testing thymeleaf and spring boot stuff
+
+[33mcommit 169e1572e39394b24071bd8f148e5a4845f06b56[m
+Author: ThomasFeldman <tfeldman1.31@gmail.com>
+Date:   Sun Mar 29 18:40:38 2020 -0500
+
+    first commit
