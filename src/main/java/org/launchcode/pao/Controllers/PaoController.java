@@ -1,7 +1,9 @@
 package org.launchcode.pao.Controllers;
 
+import javax.validation.constraints.NotNull;
+import org.launchcode.pao.Models.Category;
 import org.launchcode.pao.Models.Cheese;
-import org.launchcode.pao.Models.CheeseType;
+import org.launchcode.pao.Models.Data.CategoryDao;
 import org.launchcode.pao.Models.Data.PaoDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Optional;
+
 
 @Controller
 @RequestMapping("cheese")
@@ -20,6 +24,8 @@ public class PaoController {
 
     @Autowired
     private PaoDao paoDao;
+
+    private CategoryDao categoryDao;
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -34,13 +40,17 @@ public class PaoController {
     public String displayAddCheeseForm(Model  model) {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
-        model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("categories", categoryDao.findAll());
         return "add";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddCheeseForm(@ModelAttribute @Valid Cheese newCheese,
-                                       Errors errors, Model model) {
+                                       Errors errors, @RequestParam int categoryId,
+                                       Model model) {
+        //.findById has been deprecated. Need to find updated method.
+        Category cat = categoryDao.findById(categoryId);
+        newCheese.setCategory(cat);
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
             return "add";
