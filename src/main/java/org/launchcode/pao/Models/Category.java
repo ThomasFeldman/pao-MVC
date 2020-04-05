@@ -2,6 +2,7 @@ package org.launchcode.pao.Models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.persistence.ManyToMany;
 
 import javax.validation.constraints.Size;
 import java.util.ArrayList;

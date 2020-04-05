@@ -48,13 +48,15 @@ public class PaoController {
     public String processAddCheeseForm(@ModelAttribute @Valid Cheese newCheese,
                                        Errors errors, @RequestParam int categoryId,
                                        Model model) {
-        //.findById has been deprecated. Need to find updated method.
-        Category cat = categoryDao.findById(categoryId);
-        newCheese.setCategory(cat);
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Cheese");
+            model.addAttribute("categories", categoryDao.findAll());
             return "add";
         }
+
+        //.findOne has been deprecated. Need to find updated method.
+        Category cat = categoryDao.findById(categoryId).get();
+        newCheese.setCategory(cat);
         paoDao.save(newCheese);
         return "redirect:";
     }
