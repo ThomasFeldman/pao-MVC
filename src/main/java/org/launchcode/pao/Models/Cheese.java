@@ -1,5 +1,5 @@
 package org.launchcode.pao.Models;
-
+import org.launchcode.pao.Models.Category;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -26,9 +26,14 @@ public class Cheese {
     @ManyToOne
     private Category category;
 
-    public Cheese(String name, String description) {
+    @NotNull
+    private String categoryName;
+
+
+    public Cheese(String name, String description, @NotNull String categoryName) {
         this.name = name;
         this.description = description;
+        this.category.name = categoryName;
     }
 
     public Cheese() { }
