@@ -25,6 +25,7 @@ public class PaoController {
     @Autowired
     private PaoDao paoDao;
 
+    @Autowired
     private CategoryDao categoryDao;
 
     @RequestMapping(value = "")
@@ -55,6 +56,7 @@ public class PaoController {
         }
 
         //.findOne has been deprecated. Need to find updated method.
+        //Category cat = categoryDao.findAllById(categoryId); Why does this one not work?? The other one also doesn't work maybe try getting this line to work.
         Category cat = categoryDao.findById(categoryId).get();
         newCheese.setCategory(cat);
         paoDao.save(newCheese);

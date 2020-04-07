@@ -26,14 +26,10 @@ public class Cheese {
     @ManyToOne
     private Category category;
 
-    @NotNull
-    private String categoryName;
 
-
-    public Cheese(String name, String description, @NotNull String categoryName) {
+    public Cheese(String name, String description) {
         this.name = name;
         this.description = description;
-        this.category.name = categoryName;
     }
 
     public Cheese() { }
