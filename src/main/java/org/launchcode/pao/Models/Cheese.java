@@ -24,12 +24,14 @@ public class Cheese {
     private String description;
 
     @ManyToOne
+    @NotNull (message = "category is required")
     private Category category;
 
 
-    public Cheese(String name, String description) {
+    public Cheese(String name, String description, Category category) {
         this.name = name;
         this.description = description;
+        this.category = category;
     }
 
     public Cheese() { }
@@ -61,6 +63,5 @@ public class Cheese {
     public void setCategory(Category category) {
         this.category = category;
     }
-
 }
 

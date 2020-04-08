@@ -33,6 +33,7 @@ public class PaoController {
 
         model.addAttribute("cheeses", paoDao.findAll());
         model.addAttribute("title", "My Cheeses");
+        model.addAttribute("categories", categoryDao.findAll());
 
         return "index";
     }
