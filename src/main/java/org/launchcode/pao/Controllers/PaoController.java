@@ -3,6 +3,7 @@ package org.launchcode.pao.Controllers;
 import javax.validation.constraints.NotNull;
 import org.launchcode.pao.Models.Category;
 import org.launchcode.pao.Models.Cheese;
+import org.launchcode.pao.Models.Pao;
 import org.launchcode.pao.Models.Data.CategoryDao;
 import org.launchcode.pao.Models.Data.PaoDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.util.Optional;
 
-
+//CHEESE CODE FROM LAUNCHCODE CLASS
 @Controller
 @RequestMapping("cheese")
 public class PaoController {
@@ -81,4 +82,13 @@ public class PaoController {
         return "redirect:";
     }
 
+    //END OF CHEESE CODE FROM LAUNCHCODE CLASS
+
+    //START OF REAL PAO CONTROLLER METHODS
+
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    public String displayEditPao(Model model) {
+        model.addAttribute(new Pao());
+        return "";
+    }
 }
