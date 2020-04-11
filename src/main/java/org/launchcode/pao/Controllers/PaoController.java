@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 //CHEESE CODE FROM LAUNCHCODE CLASS
 @Controller
@@ -86,9 +85,23 @@ public class PaoController {
 
     //START OF REAL PAO CONTROLLER METHODS
 
-    @RequestMapping(value = "edit", method = RequestMethod.GET)
-    public String displayEditPao(Model model) {
+    @RequestMapping(value = "pao/edit", method = RequestMethod.GET)
+    public String displayAddPaoForm(Model  model) {
+        model.addAttribute("title", "Add Pao");
         model.addAttribute(new Pao());
-        return "";
+        model.addAttribute("pao", paoDao.findAll());
+        return "add";
+    }
+
+    @RequestMapping(value = "pao/edit", method = RequestMethod.POST)
+    public String processAddPaoForm(@ModelAttribute @Valid Pao newPao,
+                                       Errors errors, @RequestParam int categoryId,
+                                       Model model) {
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Add Pao");
+            model.addAttribute("pao", paoDao.findAll());
+            return "add";
+        }
+        return "redirect:";
     }
 }
