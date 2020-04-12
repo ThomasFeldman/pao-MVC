@@ -26,20 +26,6 @@
 
     </table>
     <br/>
-    <table th:for="category">
-        <tr>
-            <th>Is this thing ever going to work?</th>
-        </tr>
-        <select name="categoryId">
-            <option th:each="category : ${categories}"
-                    th:text="${category.name}"
-                    th:value="${category.id}">
-            </option>
-        </select>
-        <tr >
 
-            <td th:text="${category.name}"></td>
-        </tr>
-    </table>
 </body>
 </html>

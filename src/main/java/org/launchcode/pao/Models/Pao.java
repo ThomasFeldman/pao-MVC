@@ -22,7 +22,8 @@ public class Pao {
 
     private String object;
 
-    public Pao(String person, String action, String object) {
+    public Pao(int PaoNum, String person, String action, String object) {
+        this.PaoNum = PaoNum;
         this.person = person;
         this.action = action;
         this.object = object;
