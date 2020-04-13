@@ -28,18 +28,12 @@
         <span th:errors="*{object}" class="error"></span>
     </div>
 
-<!--    <div class="form-group">-->
-<!--        <label th:for="category">Category</label>-->
-<!--        <select name="categoryId">-->
-<!--            <option th:each="category : ${categories}"-->
-<!--                    th:text="${category.name}"-->
-<!--                    th:value="${category.id}">-->
-<!--            </option>-->
-<!--        </select>-->
-<!--    </div>-->
 
     <input type="submit" value="Add Pao"/>
 </form>
 
+<form method="post">
+    <input type="submit" value="Delete Pao"/>
+</form>
 </body>
 </html>
