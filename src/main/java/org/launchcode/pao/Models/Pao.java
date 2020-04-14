@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.persistence.ManyToOne;
+
 
 @Entity
 public class Pao {
@@ -14,7 +16,7 @@ public class Pao {
     private int id;
 
     @NotNull
-    private int PaoNum;
+    private String PaoNum;
 
     private String person;
 
@@ -22,7 +24,7 @@ public class Pao {
 
     private String object;
 
-    public Pao(int PaoNum, String person, String action, String object) {
+    public Pao(String PaoNum, String person, String action, String object) {
         this.PaoNum = PaoNum;
         this.person = person;
         this.action = action;
@@ -33,9 +35,9 @@ public class Pao {
 
     public int getId() { return id; }
 
-    public int getPaoNum() { return PaoNum; }
+    public String getPaoNum() { return PaoNum; }
 
-    public void setPaoNum(int paoNum) { PaoNum = paoNum; }
+    public void setPaoNum(String paoNum) { PaoNum = paoNum; }
 
     public String getPerson() { return person; }
 

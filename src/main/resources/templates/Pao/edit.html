@@ -6,34 +6,32 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" style="max-width:600px;" th:object="${pao}">
-<!--    <div class="form-group">-->
-<!--        <label th:for="PaoNum">Number</label>-->
-<!--        <input class="form-control" th:field="*{PaoNum}" />-->
-<!--        <span th:errors="*{PaoNum}" class="error"></span>-->
-<!--    </div>-->
-    <div class="form-group">
-        <label th:for="person">Person</label>
-        <input class="form-control" th:field="*{person}" />
-        <span th:errors="*{person}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="action">Action</label>
-        <input class="form-control" th:field="*{action}" />
-        <span th:errors="*{action}" class="error"></span>
-    </div>
-    <div class="form-group">
-        <label th:for="object">Object</label>
-        <input class="form-control" th:field="*{object}" />
-        <span th:errors="*{object}" class="error"></span>
+<form method="post" style="max-width: 100%;" th:object="${pao}">
+    <div style="display: table-row">
+        <div class="form-group" style="display: table-cell">
+            <label th:for="PaoNum">Number</label>
+            <input class="form-control" th:field="*{PaoNum}" />
+            <span th:errors="*{PaoNum}" class="error"></span>
+        </div>
+        <div class="form-group" style="display: table-cell">
+            <label th:for="person">Person</label>
+            <input class="form-control" th:field="*{person}" />
+            <span th:errors="*{person}" class="error"></span>
+        </div>
+        <div class="form-group" style="display: table-cell">
+            <label th:for="action">Action</label>
+            <input class="form-control" th:field="*{action}" />
+            <span th:errors="*{action}" class="error"></span>
+        </div>
+        <div class="form-group" style="display: table-cell">
+            <label th:for="object">Object</label>
+            <input class="form-control" th:field="*{object}" />
+            <span th:errors="*{object}" class="error"></span>
+        </div>
     </div>
 
 
     <input type="submit" value="Add Pao"/>
-</form>
-
-<form method="post">
-    <input type="submit" value="Delete Pao"/>
 </form>
 </body>
 </html>
