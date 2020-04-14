@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+    <html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+<head th:replace="fragments :: head"></head>
+
+    <body class="container body-content">
+
+    <h1 th:text="${title}">Default Title</h1>
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <p th:unless="${paos} and ${paos.size()}">no paos to train ;(</p>
+
+    //User will enter in # to train, there will be 3 flash cards labeled person/action/object. Each
+    //one will be flippable and display the text of whatever number it is associated with.
+    //because PaoNum is actually a string we will need to plan accordingly. it will look like they enter
+    //a number but they will be entering a string.
+
+    <div class="flashcard-container">
+        <div class="flashcard"></div>
+        <div class="flashcard"></div>
+        <div class="flashcard"></div>
+    </div>
+
+
+    </body>
+    </html>
