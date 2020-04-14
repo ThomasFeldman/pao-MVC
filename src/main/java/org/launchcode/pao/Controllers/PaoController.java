@@ -114,4 +114,16 @@ public class PaoController {
 
         return "redirect:";
     }
+
+    @RequestMapping(value = "train", method = RequestMethod.GET)
+    public String displayTrainForm(Model model) {
+        model.addAttribute("title", "Train PAO");
+        return "pao/train";
+    }
+
+    @RequestMapping(value = "train", method = RequestMethod.POST)
+    public String displayTrainForm(@RequestParam String userInput) {
+
+        return "pao/train";
+    }
 }

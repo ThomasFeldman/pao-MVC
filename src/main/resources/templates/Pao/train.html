@@ -12,15 +12,18 @@
 
     <p th:unless="${paos} and ${paos.size()}">no paos to train ;(</p>
 
-    //User will enter in # to train, there will be 3 flash cards labeled person/action/object. Each
-    //one will be flippable and display the text of whatever number it is associated with.
-    //because PaoNum is actually a string we will need to plan accordingly. it will look like they enter
-    //a number but they will be entering a string.
+<!--    //User will enter in # to train, there will be 3 flash cards labeled person/action/object. Each-->
+<!--    //one will be flippable and display the text of whatever number it is associated with.-->
+<!--    //because PaoNum is actually a string we will need to plan accordingly. it will look like they enter-->
+<!--    //a number but they will be entering a string.-->
 
     <div class="flashcard-container">
-        <div class="flashcard"></div>
-        <div class="flashcard"></div>
-        <div class="flashcard"></div>
+        <div class="flashcard">
+            <div class="flash-front">font of card</div>
+            <div class="flash-back">back of card</div>
+        </div>
+<!--        <div class="flashcard"></div>-->
+<!--        <div class="flashcard"></div>-->
     </div>
 
 
