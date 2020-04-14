@@ -10,22 +10,45 @@
 
     <nav th:replace="fragments :: navigation"></nav>
 
-    <p th:unless="${paos} and ${paos.size()}">no paos to train ;(</p>
 
+<!--    NEED TO PASS STRING DATA FROM USER TO CONTROLLER PROBABLY USING REQUEST PARAM I'M ALMOST POSITIVE THAT'S HOW IT'S DONE-->
+
+    <form method="post" style="max-width: 100%;">
+        <div style="display: table-row">
+            <div class="form-group" style="display: table-cell">
+                <label for="userNum">Enter Num</label>
+                <input class="form-control" name="userNum"/>
+            </div>
+        </div>
+    <input type="submit" value="Train">
+    </form>
 <!--    //User will enter in # to train, there will be 3 flash cards labeled person/action/object. Each-->
 <!--    //one will be flippable and display the text of whatever number it is associated with.-->
 <!--    //because PaoNum is actually a string we will need to plan accordingly. it will look like they enter-->
 <!--    //a number but they will be entering a string.-->
 
-    <div class="flashcard-container">
+
+<!--            <p th:unless="${paos} and ${paos.size()}">no paos to train ;(</p>-->
+
+<!--    <div class="flashcard-container" th:object="${pao}">-->
+<!--        <div class="flashcard">-->
+<!--            <div class="flash-front">font of card</div>-->
+<!--            <div class="flash-back" th:text="${pao.person}">back of card</div>-->
+<!--        </div>-->
+<!--    </div>-->
+            <div class="flashcard-container">
         <div class="flashcard">
             <div class="flash-front">font of card</div>
             <div class="flash-back">back of card</div>
         </div>
-<!--        <div class="flashcard"></div>-->
-<!--        <div class="flashcard"></div>-->
+    </div>
+            <div class="flashcard-container">
+        <div class="flashcard">
+            <div class="flash-front">font of card</div>
+            <div class="flash-back">back of card</div>
+        </div>
     </div>
 
 
     </body>
-    </html>
+</html>
