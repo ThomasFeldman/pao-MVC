@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 
 @Entity
@@ -23,6 +26,7 @@ public class Pao {
     private String action;
 
     private String object;
+
 
     public Pao(String PaoNum, String person, String action, String object) {
         this.PaoNum = PaoNum;
@@ -50,4 +54,22 @@ public class Pao {
     public String getObject() { return object; }
 
     public void setObject(String object) { this.object = object; }
+
+
+    public void getAllClassAndFields() throws InvocationTargetException, IllegalAccessException {
+        Pao pao = new Pao();
+        Method[] methods = pao.getClass().getDeclaredMethods();
+        for (Method method : methods) {
+            Object object = method.invoke(pao, new Object[]{});
+            System.out.println("Class Name = " + object.getClass().getName());
+            printFields(object);
+        }
+    }
+
+    public static void printFields(Object obj) {
+        Field[] fields = obj.getClass().getFields();
+        for (Field field : fields) {
+            System.out.println("Field Name = " + field.getName());
+        }
+    }
 }
