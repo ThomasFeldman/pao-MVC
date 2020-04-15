@@ -69,12 +69,20 @@ public class PaoController {
     @RequestMapping(value = "train", method = RequestMethod.GET)
     public String displayTrainForm(Model model) {
         model.addAttribute("title", "Train PAO");
-        Scanner input = new Scanner(System.in);
+        model.addAttribute("paos", paoDao.findAll());
         return "pao/train";
     }
 
     @RequestMapping(value = "train", method = RequestMethod.POST)
-    public String processTrainForm() {
+    public String processTrainForm(Model model, @RequestParam int[] paoIds){
+        model.addAttribute(paoIds);
+        model.addAttribute("paos", paoDao.findAll());
+
+//        I'm going to get the pao object which has the selected Num or Id and then
+//        return the whole pao to the front end so I can grab its person/action/object text for flash cards
+        for (paoId : paoIds) {
+            model.addAttribute(paoIds);
+        }
 
         return "pao/train";
     }

@@ -11,16 +11,21 @@
     <nav th:replace="fragments :: navigation"></nav>
 
 
-
     <form method="post" style="max-width: 100%;">
-        <div th:objext="${paos}">
-            <label>Choose a Number:</label>
 
-            <!--                <p th:unless="${paos} and ${paos.size()}">no paos to train ;(</p>-->
-            <div th:each="pao : ${paos}" >
-                <input type="checkbox" name="paoIds" th:id="${pao.id}" th:value="${pao.id}"/>
-            </div>
-           </div>
+
+        <div>
+            <h3>Select Number to Train</h3>
+
+            <p th:unless="${paos} and ${paos.size()}">no paos to train ;(</p>
+
+                <div th:each="pao : ${paos}" >
+                    <label th:for="paoIds" th:text="${pao.PaoNum}"></label>
+                    <input type="checkbox" name="paoIds" th:id="${pao.id}" th:value="${pao.id}"/>
+                </div>
+        </div>
+        <button type="submit">Train!</button>
+
     </form>
 
     <div class="flashcard-container">
