@@ -80,8 +80,8 @@ public class PaoController {
 
 //        I'm going to get the pao object which has the selected Num or Id and then
 //        return the whole pao to the front end so I can grab its person/action/object text for flash cards
-        for (paoId : paoIds) {
-            model.addAttribute(paoIds);
+        for (int paoId : paoIds) {
+            model.addAttribute(paoId);
         }
 
         return "pao/train";
