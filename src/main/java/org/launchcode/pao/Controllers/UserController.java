@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -19,8 +20,9 @@ public class UserController {
     private UserDao userDao;
 
     @RequestMapping(value = "account", method = RequestMethod.GET)
-    public String displayUser(Model model){
-
+    public String displayUser(@RequestParam User user, Model model){
+        //will need to return a user object to pass here to get user details
+        //will need to pass user object to other controller so they can get that user's specific PAO
         return "user/account";
     }
 
@@ -42,6 +44,19 @@ public class UserController {
             return "user/signup";
         }
         userDao.save(newUser);
-        return "redirect:";
+        return "user/account";
     }
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String displayLogin(Model model){
+        model.addAttribute("title", "Login");
+        return "user/login";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String processLogin(Model model){
+
+        return "user/account";
+    }
+
 }

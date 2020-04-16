@@ -24,13 +24,11 @@ public class User {
     @NotNull
     private String password;
 
-    private String bio;
 
-
-    public User (String name, String bio, String email){
+    public User (String name, String email, String password){
         this.name = name;
-        this.bio = bio;
         this.email = email;
+        this.password = password;
     }
 
     public User() {}
@@ -38,7 +36,6 @@ public class User {
     public int getId() {
         return id;
     }
-
 
     public String getName() {
         return name;
@@ -64,11 +61,4 @@ public class User {
         this.password = password;
     }
 
-    public String getBio() {
-        return bio;
     }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-}

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container body-content">
 
-<h1></h1>
+<p th:unless="${user} and ${user.size()}">Not Logged In. Please Login Or Signup</p>
+
+<h1 th:text="${user.name}"></h1>
 
 <nav th:replace="fragments :: navigation"></nav>
 
