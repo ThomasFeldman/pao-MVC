@@ -6,28 +6,31 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" th:object="${users}">
-    <div>
-        Enter Name
-        <input type="text" th:name="username"/>
-    </div>
-    <br/>
-    <div>
-        Enter Email
-        <input type="email" th:name="email"/>
-    </div>
-    <br/>
-    <div>
-        Enter Password
-        <input type="password" th:name="password"/>
-    </div>
-    <br/>
-    <div>
-        Re-enter Password
-        <input type="password" th:name="confirmPass"/>
-    </div>
-    <br/>
-    <button type="submit">Sign Up</button>
-</form>
+    <form method="post" th:object="${users}">
+        <div class="form-group" style="display: table-cell">
+            <label th:for="username">Enter Name</label>
+            <input class="form-control" th:field="*{username}" />
+            <span th:errors="*{username}" class="error"></span>
+        </div>
+        <br/>
+        <div class="form-group" style="display: table-cell">
+            <label th:for="email">Enter Email</label>
+            <input class="form-control" th:field="*{email}" />
+            <span th:errors="*{email}" class="error"></span>
+        </div>
+        <br/>
+        <div class="form-group" style="display: table-cell">
+            <label th:for="password">Enter Password</label>
+            <input class="form-control" type="password" th:field="*{password}" />
+            <span th:errors="*{password}" class="error"></span>
+        </div>
+        <br/>
+        <div>
+            Re-enter Password
+            <input type="password"/>
+        </div>
+        <br/>
+        <button type="submit">Sign Up</button>
+    </form>
 </body>
 </html>

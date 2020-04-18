@@ -1,11 +1,9 @@
 package org.launchcode.pao.Models;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import javax.persistence.ManyToOne;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -27,6 +25,8 @@ public class Pao {
 
     private String object;
 
+//    @OneToOne
+//    private User user;
 
     public Pao(String PaoNum, String person, String action, String object) {
         this.PaoNum = PaoNum;
