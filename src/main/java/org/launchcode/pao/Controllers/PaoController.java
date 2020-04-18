@@ -23,16 +23,21 @@ public class PaoController {
     private PaoDao paoDao;
 
 
-    @RequestMapping(value = "")
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("paos", paoDao.findAll());
         model.addAttribute("title", "My PAO");
         return "Pao/index";
     }
 
+    @RequestMapping(value = "home", method = RequestMethod.GET)
+    public String displayHomePage(){
+        return "home";
+    }
+
     @RequestMapping(value = "edit", method = RequestMethod.GET)
     public String displayEditPaoForm(Model model) {
-        model.addAttribute("title", "Edit PAO");
+        model.addAttribute("title", "Add PAO");
         model.addAttribute("paos", paoDao.findAll());
         model.addAttribute(new Pao());
         return "pao/edit";

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <link rel="stylesheet" type="text/css" href="../../static/vendors/css/grid.css">
+    <link rel="stylesheet" type="text/css" href="../../static/style.css">
+    <link rel="stylesheet" type="text/css" href="../../static/vendors/css/login.css">
+
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Home</title>
+
+</head>
+
+<body class="container">
+
+<header>
+    <div class="hero-text-box title">
+        <h1 >Person-Action-Object</h1>
+        <h2>Advanced Memory Training</h2>
+    </div>
+
+
+    <div class="row">
+        <nav th:fragment="navigation">
+            <ul class="sticky main-nav">
+                <img src="../../img/brainlogo.png" id="logo">
+                <li class="post-nav-btn"><a href="../Posts/post.html">Posts</a></li>
+                <li class="list-nav-btn"><a href="../List/list.html">List</a></li>
+                <li class="train-nav-btn"><a href="../Train/train.html">Train</a></li>
+                <li class="btn-login"><a href="/login">Login</a></li>
+                <li class="btn-register"><a href="/register" class="register-text">Register</a></li>
+            </ul>
+        </nav>
+
+
+    </div>
+</header>
+
+
+
+
+<section class="sec-type1">
+    <h2 class="sec-title">Introduction</h2>
+
+
+    <p class="long-copy">
+        If I told you to remember 7 numbers how would you feel? Maybe confident. What if I asked you to remember 10 numbers, 20 numbers, 100 numbers 1,000 numbers? You would probably lose all confidence after 10. After all your memory can only maintain so much right? If I told you you could train your brain to remember 1,000 random numbers after reading through them just once you might be resonably suspicious. But I tell you now that it can be achieved with only a little bit of training and practice and of course a PAO system. PAO systems are what Memory Champions use to remember insane amounts of numbers and these Memory Champions are more often than not just ordinary people who have practiced techniques like the PAO.
+        <br><br>
+
+    </p>
+</section>
+
+
+
+<section class="sec-type2">
+
+    <h2 class="sec-title">What & Why</h2>
+
+    <p class="long-copy">So what is PAO? It stands for Person-Action-Object and is a realatively simple idea. You make a list of People, Actions, and Objects. Then associate those People, Actions, and Objects with a specific number. So if my numbers are 0-9 I will have 10 people that each represent one number of 0-9, ten actions that represent 0-9, and ten objects that represent 0-9.
+    </p>
+
+    <p class="long-copy">Why would you use it? You would make/use a PAO system to remember a lot of numbers or playing cards, impress your friends by your amazing memory, never forget the number of that cute girl from the bar (okay maybe not the last one).</p>
+
+</section>
+
+
+<section class="sec-type1">
+
+    <h2 class="sec-title">How to Use</h2>
+
+    <p class="long-copy">Here are 3 examples of PAO sets:<br>
+        1= Albert Einstein--Writing on--Blackboard<br>2= Arnold Schwarzenegger--Pumping--Iron<br>3= David Beckham--Kicking-Soccer Ball
+        <br><br><strong><h3 id="how-h3">Try remember the story or the number</h3></strong><br><br></p>
+    <p class="long-copy" id="howto-example">
+        <strong>The Story: </strong>Albert Einstein pumping a soccer ball. Now Arnold Schwarzenegger kicking a blackboard. Finally David Beckham writing passionately on an iron dumbbell. <br><br><strong>The number: </strong>123231312.
+        <br><br> Which one was easier to remember? Probably the story because you can visualize each image clearly in your mind's eye. By associating each image with a number you can turn the abstract numbers into colorful stories.
+    </p>
+
+</section>
+
+<section class="sec-type2">
+
+    <h2 class="sec-title">Using The PAO Trainer</h2>
+
+    <p class="long-copy">There are three basic parts to the website<br><br>
+        <strong>List</strong> is where you will create your PAO system. To make things easy you can select the size of PAO you want to make (00-99 recommended). Upload the images of your People, Actions, and Objects. And edit any PAO which is linked to your account (you can download other people's PAOs).
+        <br><br>
+        <strong>Train</strong> is where you can quiz yourself on your PAO. The hardest part of using a PAO is getting your PAO memorized and quickly recalling the images and their associated numbers. Once this is done you will be able to remember very large numbers very quickly. Keep training!
+        <br><br>
+        <strong>Post</strong> is where you can share your own PAO, view other people's PAOs, or write a post about PAOs should the inspiration strike you. This is a useful tool for beginnners who might not know the best way to structure their PAOs.
+    </p>
+
+</section>
+
+<section class="sec-type1">
+
+    <h2 class="sec-title">Still Confused?</h2>
+
+    <p class="long-copy">Watch this video by 4 time memory champion Nelson Delis. He will cover something called the O'Brien method (though not state it outright) which is just one method of developing PAOs. Yours won't have to follow initials to numbers if you prefer something else. Keep in mind that this is an advanced memory technique so take your time learning how to use it effectively.</p>
+    <iframe src="https://www.youtube.com/embed/R-gCm3gEFQE" frameborder="0" allowfullscreen ng-show="showvideo">
+    </iframe>
+
+</section>
+</body>
+</html>
