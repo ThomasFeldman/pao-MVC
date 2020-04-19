@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body class="container body-content">
+<body class="body-content">
 
-<p th:unless="${user} and ${user.size()}">Not Logged In. Please Login Or Signup</p>
+<p class="textContainer" th:unless="${user} and ${user.size()}">Not Logged In. Please Login Or Signup</p>
 
-<h1 th:text="${user.name}"></h1>
+<h1 class="textContainer" th:text="${user.name}"></h1>
 
-<nav th:replace="fragments :: navigation"></nav>
+<nav class="textContainer" th:replace="fragments :: navigation"></nav>
 
 </body>
 </html>

@@ -12,9 +12,9 @@
 
 </head>
 
-<body class="container">
+<body class="body-content">
 
-<header>
+<header class="textContainer">
     <div class="hero-text-box title">
         <h1 >Person-Action-Object</h1>
         <h2>Advanced Memory Training</h2>
@@ -22,7 +22,7 @@
 
 
     <div class="row">
-        <nav th:fragment="navigation">
+        <nav th:replace="fragments :: navigation">
             <ul class="sticky main-nav">
                 <img src="../../img/brainlogo.png" id="logo">
                 <li class="post-nav-btn"><a href="../Posts/post.html">Posts</a></li>
