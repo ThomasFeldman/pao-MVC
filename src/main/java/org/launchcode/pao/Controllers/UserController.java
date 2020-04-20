@@ -28,9 +28,9 @@ public class UserController {
 
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String displaySignUp(Model model){
-        model.addAttribute("users", userDao.findAll());
         model.addAttribute("title", "User Signup");
-        model.addAttribute(new User());
+//        model.addAttribute("users", userDao.findAll());
+//        model.addAttribute(new User());
         return "user/signup";
     }
 

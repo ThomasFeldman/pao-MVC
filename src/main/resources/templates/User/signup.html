@@ -8,9 +8,9 @@
 
     <form class="textContainer" method="post" th:object="${users}">
         <div class="form-group" style="display: table-cell">
-            <label th:for="username">Enter Name</label>
-            <input class="form-control" th:field="*{username}" />
-            <span th:errors="*{username}" class="error"></span>
+            <label th:for="name">Enter Name</label>
+            <input class="form-control" th:field="*{name}" />
+            <span th:errors="*{name}" class="error"></span>
         </div>
         <br/>
         <div class="form-group" style="display: table-cell">

@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="body-content">
-<h1 th:text="${title}">Default Title</h1>
+<h1 class="textContainer" th:text="${title}">Default Title</h1>
 
-<nav th:replace="fragments :: navigation"></nav>
+<nav class="textContainer" th:replace="fragments :: navigation"></nav>
 
-<form method="post" style="max-width: 100%;" th:object="${pao}">
+<form method="post" class="textContainer" style="max-width: 100%;" th:object="${pao}">
     <div style="display: table-row">
         <div class="form-group" style="display: table-cell">
             <label th:for="PaoNum">Number</label>
