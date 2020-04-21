@@ -25,8 +25,6 @@ public class Pao {
 
     private String object;
 
-//    @OneToOne
-//    private User user;
 
     public Pao(String PaoNum, String person, String action, String object) {
         this.PaoNum = PaoNum;
