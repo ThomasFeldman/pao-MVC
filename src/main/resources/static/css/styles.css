@@ -209,6 +209,10 @@ tr:nth-child(even) {
 
 /*** FLASH CARDS ***/
 
+.flashcard-group {
+    margin-left: 200px;
+}
+
 .flashcard-container {
     float: left;
     margin: 20px;

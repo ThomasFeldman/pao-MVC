@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Optional;
 import java.util.Scanner;
 
 @Controller
@@ -80,16 +81,10 @@ public class PaoController {
 
     @RequestMapping(value = "train", method = RequestMethod.POST)
     public String processTrainForm(Model model, @RequestParam int[] paoIds){
-        model.addAttribute(paoIds);
         model.addAttribute("paos", paoDao.findAll());
+        model.addAttribute("paoId", paoIds);
 
-//        I'm going to get the pao object which has the selected Num or Id and then
-//        return the whole pao to the front end so I can grab its person/action/object text for flash cards
-        for (int paoId : paoIds) {
-            model.addAttribute(paoId);
-        }
-
-        return "pao/train";
+        return "pao/flashcards";
     }
 
 }

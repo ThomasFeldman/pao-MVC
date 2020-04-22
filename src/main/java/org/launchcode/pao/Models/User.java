@@ -23,11 +23,6 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @Valid
-    private Pao pao;
-
-
     public User (String name, String email, String password){
         this.name = name;
         this.email = email;
