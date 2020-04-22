@@ -1,10 +1,7 @@
 package org.launchcode.pao.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -26,7 +23,7 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @Valid
     private Pao pao;
 

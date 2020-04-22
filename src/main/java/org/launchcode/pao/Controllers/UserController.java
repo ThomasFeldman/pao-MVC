@@ -54,7 +54,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLogin(Model model){
+    public String processLogin(@ModelAttribute @Valid User user,
+                               Errors errors, Model model){
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "User Login");
+            model.addAttribute("user", userDao.findAll());
+            return "user/login";
+        }
 
         return "user/account";
     }
