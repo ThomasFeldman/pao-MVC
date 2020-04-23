@@ -187,7 +187,7 @@ iframe {
     margin-top: -20px;
 }
 
-/* Table */
+/* Tables */
 
 
 table {
@@ -207,7 +207,28 @@ tr:nth-child(even) {
     background-color: #dddddd;
 }
 
+.table,
+.remove {
+    table-layout:fixed;
+    width:100%;
+    border-style: hidden!important;
+    text-align: center;
+}
+.remove-td {
+    text-align: center;
+    border-style: hidden;
+}
+
+.index-td {
+    text-align: center;
+}
+
 /*** FLASH CARDS ***/
+
+.flash-table {
+    text-align: center;
+    margin-top: -10px;
+}
 
 .flashcard-group {
     margin-left: 200px;

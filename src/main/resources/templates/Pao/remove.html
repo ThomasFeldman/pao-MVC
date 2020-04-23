@@ -22,15 +22,17 @@
         </table>
 
         <div th:each="pao : ${paos}" >
-                <table class="table" th:for="${pao.id}">
+
+            <table class="table remove" th:for="${pao.id}">
                     <tr>
-                        <td th:text="${pao.PaoNum}"></td>
-                        <td th:text="${pao.person}"></td>
-                        <td th:text="${pao.action}"></td>
-                        <td th:text="${pao.object}"></td>
+                        <td class="remove-td" th:text="${pao.PaoNum}"></td>
+                        <td class="remove-td" th:text="${pao.person}"></td>
+                        <td class="remove-td" th:text="${pao.action}"></td>
+                        <td class="remove-td" th:text="${pao.object}"></td>
                     </tr>
                 </table>
             <button type="submit" name="paoIds" th:id="${pao.id}" th:value="${pao.id}" th:text="remove"/>
+
         </div>
     </form>
 </body>

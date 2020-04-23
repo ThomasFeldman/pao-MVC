@@ -29,8 +29,7 @@ public class UserController {
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String displaySignUp(Model model){
         model.addAttribute("title", "User Signup");
-//        model.addAttribute("users", userDao.findAll());
-//        model.addAttribute(new User());
+        model.addAttribute(new User());
         return "user/signup";
     }
 
@@ -40,11 +39,10 @@ public class UserController {
                                      Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "User Signup");
-            model.addAttribute("user", userDao.findAll());
             return "user/signup";
         }
         userDao.save(newUser);
-        return "user/account";
+        return "user/signup";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)

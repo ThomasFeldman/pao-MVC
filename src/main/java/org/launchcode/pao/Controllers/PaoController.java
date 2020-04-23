@@ -39,7 +39,6 @@ public class PaoController {
     @RequestMapping(value = "edit", method = RequestMethod.GET)
     public String displayEditPaoForm(Model model) {
         model.addAttribute("title", "Add PAO");
-        model.addAttribute("paos", paoDao.findAll());
         model.addAttribute(new Pao());
         return "pao/edit";
     }
@@ -49,7 +48,6 @@ public class PaoController {
                                        Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Pao");
-            model.addAttribute("pao", paoDao.findAll());
             return "pao/edit";
         }
         paoDao.save(newPao);
@@ -74,9 +72,8 @@ public class PaoController {
 
     @RequestMapping(value = "train", method = RequestMethod.GET)
     public String displayTrainForm(Model model) {
-        model.addAttribute("title", "Train PAO");
         model.addAttribute("paos", paoDao.findAll());
-        return "pao/train";
+        return "pao/flashcards";
     }
 
     @RequestMapping(value = "train", method = RequestMethod.POST)

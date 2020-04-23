@@ -21,10 +21,10 @@
     </tr>
 
     <tr th:each="pao : ${paos}">
-        <td th:text="${pao.PaoNum}"></td>
-        <td th:text="${pao.person}"></td>
-        <td th:text="${pao.action}"></td>
-        <td th:text="${pao.object}"></td>
+        <td class="index-td" th:text="${pao.PaoNum}"></td>
+        <td class="index-td" th:text="${pao.person}"></td>
+        <td class="index-td" th:text="${pao.action}"></td>
+        <td class="index-td" th:text="${pao.object}"></td>
     </tr>
 
 </table>

@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="body-content">
-    <h1 class="textContainer" th:text="${title}">Default Title</h1>
+<h1 class="textContainer" th:text="${title}">Default Title</h1>
 
-<nav class="textContainer" th:replace="fragments :: navigation"></nav>
+    <nav class="textContainer" th:replace="fragments :: navigation"></nav>
 
-    <form class="textContainer" method="post" th:object="${users}">
+    <form class="textContainer" method="post" th:object="${user}">
         <div class="form-group" style="display: table-cell">
             <label th:for="name">Enter Name</label>
             <input class="form-control" th:field="*{name}" />
@@ -21,16 +21,34 @@
         <br/>
         <div class="form-group" style="display: table-cell">
             <label th:for="password">Enter Password</label>
-            <input class="form-control" type="password" th:field="*{password}" />
+            <input class="form-control" name="password" id="password"
+                   type="password" th:field="*{password}" onkeyup='check();'/>
             <span th:errors="*{password}" class="error"></span>
         </div>
         <br/>
-        <div>
-            Re-enter Password
-            <input type="password"/>
+        <div class="form-group" style="display: table-cell">
+            <label>Re-enter Password</label>
+            <input class="form-control" name="confirm_password" id="confirm_password"
+                type="password" onkeyup='check();'/>
+            <span id='message'></span>
+
         </div>
         <br/>
         <button type="submit">Sign Up</button>
     </form>
+
+    <script>
+        var check = function() {
+          if (document.getElementById('password').value ==
+            document.getElementById('confirm_password').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'matching';
+          } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'not matching';
+          }
+        }
+    </script>
+
 </body>
 </html>
