@@ -5,6 +5,7 @@
 <h1 class="textContainer" th:text="${title}">Default Title</h1>
 
     <nav class="textContainer" th:replace="fragments :: navigation"></nav>
+    <p th:unless="${user} and ${user.size()}"></p>
 
     <form class="textContainer" method="post" th:object="${user}">
         <div class="form-group" style="display: table-cell">

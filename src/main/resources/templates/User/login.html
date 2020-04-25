@@ -7,12 +7,15 @@
     <nav class="textContainer" th:replace="fragments :: navigation"></nav>
 
     <form method="post" class="textContainer">
-        <label for="email">Enter Email: </label>
-        <input type="email" id="email"/>
+        <div class="form-group" style="display: table-cell">
+            <label for="email">Enter Email: </label>
+            <input class="form-control" type="email" id="email" th:field="${email}"/>
+        </div>
         <br/>
-        <label for="password">Enter Password: </label>
-        <input type="password" id="password"/>
-
+        <div class="form-group" style="display: table-cell">
+            <label for="password">Enter Password: </label>
+            <input class="form-control" type="password" id="password" th:field="${password}"/>
+        </div>
         <br/>
         <br/>
 

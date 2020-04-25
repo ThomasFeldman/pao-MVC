@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("pao")
@@ -20,9 +21,10 @@ public class UserController {
     private UserDao userDao;
 
     @RequestMapping(value = "account", method = RequestMethod.GET)
-    public String displayUser(@RequestParam User user, Model model){
-        //will need to return a user object to pass here to get user details
-        //will need to pass user object to other controller so they can get that user's specific PAO
+    public String displayUser(Errors errors, Model model){
+        if (errors.hasErrors()) {
+            return "user/login";
+        }
         return "user/account";
     }
 
@@ -48,16 +50,27 @@ public class UserController {
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String displayLogin(Model model){
         model.addAttribute("title", "Login");
+        model.addAttribute("users", userDao.findAll());
         return "user/login";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLogin(@ModelAttribute @Valid User user,
+    public String processLogin(@RequestParam String password, @RequestParam String email,
                                Errors errors, Model model){
+        for(int i = 0; i < userDao.count(); i++){
+            Optional<User> userCheck = userDao.findById(i);
+            if(userCheck.get().getEmail() == email) {
+                if(userCheck.get().getPassword() == password) {
+                    return "user/account";
+                }
+                return "Wrong Password";
+            }else{
+                return "Not a user";
+            }
+        }
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "User Login");
-            model.addAttribute("user", userDao.findAll());
             return "user/login";
         }
 
