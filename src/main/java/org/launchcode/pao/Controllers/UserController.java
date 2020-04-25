@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.util.Optional;
 
 @Controller
@@ -21,10 +22,47 @@ public class UserController {
     private UserDao userDao;
 
     @RequestMapping(value = "account", method = RequestMethod.GET)
-    public String displayUser(Errors errors, Model model){
+    public String displayUser(@RequestParam(value = "password") String password,
+                              @RequestParam(value = "email")String email, Errors errors, Model model){
+        for(int i = 0; i < userDao.count(); i++){
+            Optional<User> userAccount = userDao.findById(i);
+            if(userAccount.get().getEmail() == email) {
+                if(userAccount.get().getPassword() == password) {
+                    model.addAttribute(userAccount);
+                }
+            }
+        }
+
+
         if (errors.hasErrors()) {
             return "user/login";
         }
+        return "user/account";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.GET)
+    public String displayLogin(Model model){
+        model.addAttribute("title", "Login");
+        model.addAttribute("users", userDao.findAll());
+        return "user/login";
+    }
+
+    @RequestMapping(value = "login", method = RequestMethod.POST)
+    public String processLogin(@RequestParam(value = "password") String password,
+                               @RequestParam(value = "email")String email,
+                               Errors errors, Model model){
+        for(int i = 0; i < userDao.count(); i++){
+            Optional<User> userCheck = userDao.findById(i);
+            if(userCheck.get().getEmail() == email) {
+                if(userCheck.get().getPassword() == password) {
+                    return "user/account";
+                }
+                return "Wrong Password";
+            }else{
+                return "Not a user";
+            }
+        }
+
         return "user/account";
     }
 
@@ -44,37 +82,8 @@ public class UserController {
             return "user/signup";
         }
         userDao.save(newUser);
+        //Change to User Account
         return "user/signup";
-    }
-
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String displayLogin(Model model){
-        model.addAttribute("title", "Login");
-        model.addAttribute("users", userDao.findAll());
-        return "user/login";
-    }
-
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLogin(@RequestParam String password, @RequestParam String email,
-                               Errors errors, Model model){
-        for(int i = 0; i < userDao.count(); i++){
-            Optional<User> userCheck = userDao.findById(i);
-            if(userCheck.get().getEmail() == email) {
-                if(userCheck.get().getPassword() == password) {
-                    return "user/account";
-                }
-                return "Wrong Password";
-            }else{
-                return "Not a user";
-            }
-        }
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "User Login");
-            return "user/login";
-        }
-
-        return "user/account";
     }
 
 }

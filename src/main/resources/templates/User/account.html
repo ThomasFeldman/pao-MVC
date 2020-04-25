@@ -3,9 +3,9 @@
 <head th:replace="fragments :: head"></head>
 <body class="body-content">
 
-<p class="textContainer" th:unless="${user} and ${user.size()}">Not Logged In. Please Login Or Signup</p>
+<p class="textContainer" th:unless="${userAccount} and ${userAccount.size()}">Not Logged In. Please Login Or Signup</p>
 
-<h1 class="textContainer" th:text="${user.name}"></h1>
+<h1 class="textContainer" th:text="${userAccount.name}"></h1>
 
 <nav class="textContainer" th:replace="fragments :: navigation"></nav>
 

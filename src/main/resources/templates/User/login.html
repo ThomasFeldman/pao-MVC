@@ -6,15 +6,18 @@
 
     <nav class="textContainer" th:replace="fragments :: navigation"></nav>
 
+    <p th:unless="${users} and ${users.size()}">No users :(</p>
+
+
     <form method="post" class="textContainer">
         <div class="form-group" style="display: table-cell">
             <label for="email">Enter Email: </label>
-            <input class="form-control" type="email" id="email" th:field="${email}"/>
+            <input class="form-control" type="email" id="email" th:name="email"/>
         </div>
         <br/>
         <div class="form-group" style="display: table-cell">
             <label for="password">Enter Password: </label>
-            <input class="form-control" type="password" id="password" th:field="${password}"/>
+            <input class="form-control" type="password" id="password" th:name="password"/>
         </div>
         <br/>
         <br/>
