@@ -66,6 +66,21 @@ public class UserController {
         return "user/account";
     }
 
+//    Code from Youtube Video
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String postLoginForm(@ModelAttribute(name="loginForm") LoginForm loginForm,
+                                Model model){
+        String username = loginForm.getUsername();
+        String password = loginForm.getPassword();
+
+        if("admin".equals(username) && "admin".equals(password)) {
+            return "home";
+        }else{
+            model.addAttribute("invalidCredentials", true);
+        }
+        return "login";
+    }
+
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String displaySignUp(Model model){
         model.addAttribute("title", "User Signup");
