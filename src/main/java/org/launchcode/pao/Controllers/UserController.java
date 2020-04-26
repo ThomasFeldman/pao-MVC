@@ -5,6 +5,7 @@ import org.launchcode.pao.Models.Data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,38 +49,22 @@ public class UserController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLogin(@RequestParam(value = "password") String password,
-                               @RequestParam(value = "email")String email,
+    public String processLogin(@ModelAttribute @Valid User user,
+                               BindingResult result,
+                               @RequestParam(name = "password") String password,
+                               @RequestParam(name = "email")String email,
                                Errors errors, Model model){
         for(int i = 0; i < userDao.count(); i++){
             Optional<User> userCheck = userDao.findById(i);
-            if(userCheck.get().getEmail() == email) {
-                if(userCheck.get().getPassword() == password) {
-                    return "user/account";
-                }
-                return "Wrong Password";
+            if(userCheck.get().getEmail().equals(email) && userCheck.get().getPassword().equals(password)) {
+               return "user/account";
             }else{
-                return "Not a user";
+                model.addAttribute("invalidCredentials", true);
             }
         }
-
         return "user/account";
     }
 
-//    Code from Youtube Video
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String postLoginForm(@ModelAttribute(name="loginForm") LoginForm loginForm,
-                                Model model){
-        String username = loginForm.getUsername();
-        String password = loginForm.getPassword();
-
-        if("admin".equals(username) && "admin".equals(password)) {
-            return "home";
-        }else{
-            model.addAttribute("invalidCredentials", true);
-        }
-        return "login";
-    }
 
     @RequestMapping(value = "signup", method = RequestMethod.GET)
     public String displaySignUp(Model model){
