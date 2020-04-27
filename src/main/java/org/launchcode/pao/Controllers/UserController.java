@@ -49,19 +49,20 @@ public class UserController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLogin(@ModelAttribute @Valid User user,
-                               BindingResult result,
-                               @RequestParam(name = "password") String password,
+    public String processLogin(@RequestParam(name = "password") String password,
                                @RequestParam(name = "email")String email,
-                               Errors errors, Model model){
-        for(int i = 0; i < userDao.count(); i++){
-            Optional<User> userCheck = userDao.findById(i);
-            if(userCheck.get().getEmail().equals(email) && userCheck.get().getPassword().equals(password)) {
-               return "user/account";
+                               Model model){
+        for(User theUser: userDao.findAll()){
+//            User userCheck = userDao.findById(i).get();
+
+            if(theUser.getEmail().equals(email) && theUser.getPassword().equals(password)) {
+                model.addAttribute("userAccount", theUser);
+                return "user/account";
             }else{
                 model.addAttribute("invalidCredentials", true);
             }
         }
+
         return "user/account";
     }
 
