@@ -1,5 +1,7 @@
 package org.launchcode.pao.Models;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 
 import javax.validation.Valid;
@@ -21,15 +23,20 @@ public class User {
     private String email;
 
     @NotNull
-    private String password;
+    private String pwHash;
+
 
     public User (String name, String email, String password){
         this.name = name;
         this.email = email;
-        this.password = password;
+        this.pwHash = encoder.encode(password);
+//        this.password = password;
     }
 
     public User() {}
+
+
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public int getId() {
         return id;
@@ -51,12 +58,18 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.pwHash = password;
+    }
+
+    public boolean isMatchingPassword(String password){
+        return encoder.matches(password, pwHash);
     }
 
     }
+
+
