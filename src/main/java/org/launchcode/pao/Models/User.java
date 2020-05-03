@@ -4,7 +4,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,7 +16,7 @@ public class User {
 
     @NotNull
     @Size(min = 3, max = 15)
-    private String name;
+    private String username;
 
     @Email
     private String email;
@@ -26,8 +25,8 @@ public class User {
     private String pwHash;
 
 
-    public User (String name, String email, String password){
-        this.name = name;
+    public User (String username, String email, String password){
+        this.username = username;
         this.email = email;
         this.pwHash = encoder.encode(password);
 //        this.password = password;
@@ -38,16 +37,20 @@ public class User {
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
+    public User(String username, String password) {
+
+    }
+
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -58,9 +61,9 @@ public class User {
         this.email = email;
     }
 
-//    public String getPassword() {
-//        return password;
-//    }
+    public String getPassword() {
+        return pwHash;
+    }
 
     public void setPassword(String password) {
         this.pwHash = password;
@@ -69,6 +72,18 @@ public class User {
     public boolean isMatchingPassword(String password){
         return encoder.matches(password, pwHash);
     }
+
+
+
+        private String verifyPassword;
+
+        public String getVerifyPassword() {
+            return verifyPassword;
+        }
+
+        public void setVerifyPassword(String verifyPassword) {
+            this.verifyPassword = verifyPassword;
+        }
 
     }
 

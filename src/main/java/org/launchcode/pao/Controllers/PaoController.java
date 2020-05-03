@@ -23,18 +23,18 @@ public class PaoController {
     @Autowired
     private PaoDao paoDao;
 
-
     @RequestMapping(value = "", method = RequestMethod.GET)
+    public String displayHomePage(){
+        return "home";
+    }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("paos", paoDao.findAll());
         model.addAttribute("title", "My PAO");
         return "Pao/index";
     }
 
-    @RequestMapping(value = "home", method = RequestMethod.GET)
-    public String displayHomePage(){
-        return "home";
-    }
 
     @RequestMapping(value = "edit", method = RequestMethod.GET)
     public String displayEditPaoForm(Model model) {

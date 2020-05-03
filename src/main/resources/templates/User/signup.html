@@ -8,9 +8,9 @@
 
     <form class="textContainer" method="post" th:object="${user}">
         <div class="form-group" style="display: table-cell">
-            <label th:for="name">Enter Name</label>
-            <input class="form-control" th:field="*{name}" />
-            <span th:errors="*{name}" class="error"></span>
+            <label th:for="username">Enter User Name</label>
+            <input class="form-control" th:field="*{username}" />
+            <span th:errors="*{username}" class="error"></span>
         </div>
         <br/>
         <div class="form-group" style="display: table-cell">
@@ -28,7 +28,7 @@
         <br/>
         <div class="form-group" style="display: table-cell">
             <label>Re-enter Password</label>
-            <input class="form-control" name="confirm_password" id="confirm_password"
+            <input class="form-control" name="confirm_password" th:field="${user.verifyPassword}" id="confirm_password"
                 type="password" onkeyup='check();'/>
             <span id='message'></span>
 

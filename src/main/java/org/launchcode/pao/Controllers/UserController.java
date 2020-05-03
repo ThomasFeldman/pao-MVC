@@ -7,11 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import java.util.Optional;
@@ -21,6 +20,33 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserDao userDao;
+
+
+    //LaunchCode Authentication Code
+
+    private static final String userSessionKey = "user";
+
+    public User getUserFromSession(HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        if (userId == null) {
+            return null;
+        }
+
+        Optional<User> user = userDao.findById(userId);
+
+        if (user.isEmpty()) {
+            return null;
+        }
+
+        return user.get();
+    }
+
+    private static void setUserInSession(HttpSession session, User user) {
+        session.setAttribute(userSessionKey, user.getId());
+    }
+
+
+
 
     @RequestMapping(value = "account", method = RequestMethod.GET)
     public String displayUser(@RequestParam(value = "password") String password,
@@ -77,14 +103,38 @@ public class UserController {
 
     @RequestMapping(value = "signup", method = RequestMethod.POST)
     public String processSignUp(@ModelAttribute @Valid User newUser,
-                                     Errors errors, Model model) {
+                                     Errors errors, HttpServletRequest request,
+                                     Model model) {
+
+
         if (errors.hasErrors()) {
             model.addAttribute("title", "User Signup");
             return "user/signup";
         }
+
+        //Will this work? I'm thinking newUser.getUsername will check existing users to see if the name already exists.
+        User existingUser = userDao.findByUsername(newUser.getUsername());
+
+        //name.alreadyexists? should I change this to username?
+        if (existingUser != null) {
+            errors.rejectValue("username", "username.alreadyexists", "A user with that name already exists");
+            model.addAttribute("title", "User Signup");
+            return "user/signup";
+        }
+
+        //Unsure if getVerifyPassword does anything since it doesn't seem to check against password in User.java
+        String password = newUser.getPassword();
+        String verifyPassword = newUser.getVerifyPassword();
+        if (!password.equals(verifyPassword)) {
+            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
+            model.addAttribute("title", "User Signup");
+            return "user/signup";
+        }
         userDao.save(newUser);
-        //Change to User Account
-        return "user/signup";
+        setUserInSession(request.getSession(), newUser);
+
+        model.addAttribute("userAccount", newUser);
+        return "user/account";
     }
 
 }

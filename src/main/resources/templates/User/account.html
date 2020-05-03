@@ -5,7 +5,7 @@
 
 <p class="textContainer" th:unless="${userAccount}">Not Logged In. Please Login Or Signup</p>
 
-<h1 class="textContainer" th:text="${userAccount.name}"></h1>
+<h1 class="textContainer" th:text="${userAccount.username}"></h1>
 <h1 class="textContainer" th:text="${userAccount.email}"></h1>
 
 <nav class="textContainer" th:replace="fragments :: navigation"></nav>
