@@ -1,6 +1,7 @@
 package org.launchcode.pao.Controllers;
 
 import org.launchcode.pao.Controllers.UserController;
+import org.launchcode.pao.Models.Data.UserDao;
 import org.launchcode.pao.Models.Pao;
 import org.launchcode.pao.Models.Data.PaoDao;
 import org.launchcode.pao.Models.User;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.OneToOne;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
@@ -22,12 +24,38 @@ import java.util.Scanner;
 @RequestMapping("pao")
 public class PaoController {
 
-    private UserController userController;
-
-    private User userIn = userController.getUserFromSession(HttpSession session);
+    @OneToOne
+    public UserController userController;
 
     @Autowired
     private PaoDao paoDao;
+
+    @Autowired
+    private UserDao userDao;
+
+    public static String userSessionKey = "user";
+
+
+    public User getUserFromSession(HttpSession session) {
+        Integer userId = (Integer) session.getAttribute(userSessionKey);
+        if (userId == null) {
+            return null;
+        }
+
+        Optional<User> user = userDao.findById(userId);
+
+        if (user.isEmpty()) {
+            return null;
+        }
+
+        return user.get();
+    }
+
+    private static void setUserInSession(HttpSession session, User user) {
+        session.setAttribute(userSessionKey, user.getId());
+    }
+
+
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String displayHomePage(){
@@ -56,12 +84,22 @@ public class PaoController {
             model.addAttribute("title", "Add Pao");
             return "pao/edit";
         }
+
         paoDao.save(newPao);
         return "redirect:";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
-    public String displayRemovePaoForm(Model model) {
+    public String displayRemovePaoForm(HttpSession session, Model model) {
+
+        if (session.getAttribute(userSessionKey) == null){
+            model.addAttribute("title", "Login");
+            model.addAttribute("users", userDao.findAll());
+            return "redirect:login";
+        }
+
+
+
         model.addAttribute("paos", paoDao.findAll());
         model.addAttribute("title", "Remove Pao");
         return "pao/remove";
