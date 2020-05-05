@@ -1,8 +1,9 @@
 package org.launchcode.pao.Controllers;
 
-
+import org.launchcode.pao.Controllers.UserController;
 import org.launchcode.pao.Models.Pao;
 import org.launchcode.pao.Models.Data.PaoDao;
+import org.launchcode.pao.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Optional;
 import java.util.Scanner;
@@ -19,6 +21,10 @@ import java.util.Scanner;
 @Controller
 @RequestMapping("pao")
 public class PaoController {
+
+    private UserController userController;
+
+    private User userIn = userController.getUserFromSession(HttpSession session);
 
     @Autowired
     private PaoDao paoDao;

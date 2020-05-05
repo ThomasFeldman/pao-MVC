@@ -24,7 +24,8 @@ public class UserController {
 
     //LaunchCode Authentication Code
 
-    private static final String userSessionKey = "user";
+    public static final String userSessionKey = "user";
+
 
     public User getUserFromSession(HttpSession session) {
         Integer userId = (Integer) session.getAttribute(userSessionKey);
@@ -68,10 +69,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String displayLogin(Model model){
-        model.addAttribute("title", "Login");
-        model.addAttribute("users", userDao.findAll());
-        return "user/login";
+    public String displayLogin(HttpServletRequest session, Model model){
+
+        if (session.getAttribute(userSessionKey) == null){
+            model.addAttribute("title", "Login");
+            model.addAttribute("users", userDao.findAll());
+            return "user/login";
+        }
+
+        return "user/account";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
