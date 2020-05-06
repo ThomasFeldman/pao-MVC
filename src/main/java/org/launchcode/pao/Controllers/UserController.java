@@ -19,7 +19,7 @@ import java.util.Optional;
 @RequestMapping("pao")
 public class UserController {
     @Autowired
-    private UserDao userDao;
+    public UserDao userDao;
 
 
     //LaunchCode Authentication Code
@@ -42,7 +42,7 @@ public class UserController {
         return user.get();
     }
 
-    private static void setUserInSession(HttpSession session, User user) {
+    public static void setUserInSession(HttpSession session, User user) {
         session.setAttribute(userSessionKey, user.getId());
     }
 

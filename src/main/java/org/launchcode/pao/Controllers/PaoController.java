@@ -32,29 +32,7 @@ public class PaoController {
 
     @Autowired
     private UserDao userDao;
-
-    public static String userSessionKey = "user";
-
-
-    public User getUserFromSession(HttpSession session) {
-        Integer userId = (Integer) session.getAttribute(userSessionKey);
-        if (userId == null) {
-            return null;
-        }
-
-        Optional<User> user = userDao.findById(userId);
-
-        if (user.isEmpty()) {
-            return null;
-        }
-
-        return user.get();
-    }
-
-    private static void setUserInSession(HttpSession session, User user) {
-        session.setAttribute(userSessionKey, user.getId());
-    }
-
+    
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -92,13 +70,11 @@ public class PaoController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemovePaoForm(HttpSession session, Model model) {
 
-        if (session.getAttribute(userSessionKey) == null){
+        if (userController.getUserFromSession() == null){
             model.addAttribute("title", "Login");
             model.addAttribute("users", userDao.findAll());
             return "redirect:login";
         }
-
-
 
         model.addAttribute("paos", paoDao.findAll());
         model.addAttribute("title", "Remove Pao");
