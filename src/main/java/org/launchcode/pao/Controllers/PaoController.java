@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.security.taglibs.TagLibConfig;
 import javax.persistence.OneToOne;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -32,7 +32,7 @@ public class PaoController {
 
     @Autowired
     private UserDao userDao;
-    
+
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -70,7 +70,7 @@ public class PaoController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemovePaoForm(HttpSession session, Model model) {
 
-        if (userController.getUserFromSession() == null){
+        if (userController.getUserFromSession(session) == null){
             model.addAttribute("title", "Login");
             model.addAttribute("users", userDao.findAll());
             return "redirect:login";
