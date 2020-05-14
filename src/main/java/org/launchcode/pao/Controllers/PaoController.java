@@ -70,11 +70,11 @@ public class PaoController {
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemovePaoForm(HttpSession session, Model model) {
 
-        if (userController.getUserFromSession(session) == null){
-            model.addAttribute("title", "Login");
-            model.addAttribute("users", userDao.findAll());
-            return "redirect:login";
-        }
+//        if (userController.getUserFromSession(session) == null){
+//            model.addAttribute("title", "Login");
+//            model.addAttribute("users", userDao.findAll());
+//            return "redirect:login";
+//        }
 
         model.addAttribute("paos", paoDao.findAll());
         model.addAttribute("title", "Remove Pao");
