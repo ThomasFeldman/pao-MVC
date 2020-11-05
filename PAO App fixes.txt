@@ -1,0 +1,18 @@
+Login: when logged in, app needs to:
+	a)not show the login/signup options.
+	b)keep the user logged in.
+	c)take the user back to the page they were at before logging in or to the home page
+	d)allow the user to view their account page
+	e)allow the user to change their email/password/username or delete their account
+
+Flashcards: when the user views flashcards they should be able to:
+	a)seemlessly flip the flashcards
+	b)not be assaulted by gross looking flashcards
+	c)be able to cycle through a custom list of flashcards (so P 5-12 or O 14-23, etc, also mix cards from different categories P 1-5 & O 23-28 etc)
+	d)click on the flashcard (or flip button) to flip the flashcard
+	e)track if they got the card right or wrong, which will separate the wrong cards into a wrong pile
+
+Add PAO: when the user adds a pao
+	a)the screen should give a confirmation message but not redirect the user to the home screen.
+	b)verify certain criteria (number, P, A, & O are all filled in (mayber not A))
+	c)UI needs to change to look more like a spread sheet (true for remove and list as well
